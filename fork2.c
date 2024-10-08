@@ -27,6 +27,7 @@ void main()
             wait(NULL);
             printf("Soy el P2 mi pid es %d\n", getpid());
             printf("El pid de mi padre es %d\n", getppid());
+            printf("La suma de nuestros pid es: %d\n", getpid()+getppid());
         }
         else
         {
@@ -39,12 +40,14 @@ void main()
                 wait(NULL);
                 printf("Soy el P3 mi pid es %d\n", getpid());
                 printf("El pid de mi padre es %d\n", getppid());
+                printf("La suma de nuestros pid es: %d\n", getpid()+getppid());
             }
             else
             {
                 //Estoy en el proceso P4
                 printf("Soy el P4 mi pid es %d\n", getpid());
                 printf("El pid de mi padre es %d\n", getppid());
+                printf("La suma de nuestros pid es: %d\n", getpid()+getppid());
             }
         }
     }   
