@@ -3,16 +3,19 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-void main(){
+void main()
+{
     pid_t  pidP1,pidP2;
 
     pidP1 = getpid();
     pidP2 = fork();
 
-    if (pidP2==0){
+    if (pidP2==0)
+    {
         pid_t pidP3, pidP4;
 
         pidP3 = fork();
+        pid_t numpidP2 = getpid();
 
         if (pidP3 == 0)
         {
@@ -26,7 +29,7 @@ void main(){
                 //Estoy en el P5 hijo de P3 y nieto de P2
                 printf("Soy el P5 mi pid es: %d\n", getpid());
                 printf("Mi proceso padre es P3 con pid: %d\n", getppid());
-                printf("El pid de mi abuelo es: %d\n", pidP2);
+                printf("El pid de mi abuelo es: %d\n", numpidP2);
             }
             else{
                 //Sigo en P3
@@ -48,10 +51,10 @@ void main(){
 
                 if (pidP6 == 0)
                 {
-                    //Estoy en el P6 hijo de P4 y nieto de P5
+                    //Estoy en el P6 hijo de P4 y nieto de P2
                     printf("Soy el P6 mi pid es: %d\n", getpid());
                     printf("Mi proceso padre es P4 con pid: %d\n", getppid());
-                    printf("El pid de mi abuelo es: %d\n", pidP2);
+                    printf("El pid de mi abuelo es: %d\n", numpidP2);
                 }
                 else{
                     //Sigo en P4
@@ -73,7 +76,8 @@ void main(){
         }
         
     }
-    else{
+    else
+    {
         wait(NULL);
         printf("Soy el P1 con pid: %d\n",getpid());
         printf("Tambien puede ser el %d\n", pidP1);
