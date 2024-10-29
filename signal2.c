@@ -3,9 +3,12 @@
 #include <signal.h>
 #include <unistd.h>
 
+int cont = 0;
+
 void signal_handler(int numero)
 {
-	printf("Ha sonado la alarma");
+	cont += 5;
+	printf("Han transcurrido %d segundos \n", cont);
 	alarm(5);
 
 }
