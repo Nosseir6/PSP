@@ -5,8 +5,7 @@
 
 void signal_handler(int numero)
 {
-	printf("Ha sonado la alarma\n");
-	signal(SIGALRM,signal_handler);
+	printf("Ha sonado la alarma");
 	alarm(5);
 
 }
