@@ -4,32 +4,28 @@
 #include <signal.h>
 #include <time.h>
 
-void sig_handler(int numero)
+
+void mostrar_FechaYHora(int signal)
 {
-	time_t hora;
-	char *fecha;
-	time(&hora);
-	fecha = ctime(&hora);
-	printf("La hora de fin del proceso es: %s", fecha);
-	exit(0);
+   time_t hora;
+   time(&hora);
+   char * fecha = ctime(&hora);
+   printf("Fin del proceso %d : %s",getpid(),fecha);
+   exit(0);
 }
 
 int main()
 {
-	pid_t pid;
-	time_t hora;
-	char *fecha ;
-    	time(&hora);
-   	fecha = ctime(&hora) ;
+   time_t hora;
+   time(&hora);
+   char * fecha = ctime(&hora);
+   printf ("Inicio del proceso %d : %s", getpid(), fecha);
 
-	pid = getpid();
-	printf("Proceso iniciado a la hora: %s",fecha);
-	signal(SIGINT,sig_handler);
+   signal(SIGINT, mostrar_FechaYHora);
 
-	while(1)
-	{
-		sleep(1);
-	}
-
-	return 0;
+   while (1)
+   {
+      pause();
+   }
+   return 0;
 }

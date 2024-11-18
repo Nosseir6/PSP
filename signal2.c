@@ -1,27 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <signal.h>
 #include <unistd.h>
+#include <signal.h>
+#include <time.h>
 
-int cont = 0;
+int tiempo = 0;
 
-void signal_handler(int numero)
+void manejar_alarma(int sig)
 {
-	cont += 5;
-	printf("Han transcurrido %d segundos \n", cont);
-	alarm(5);
-
+    tiempo += 5;
+    printf("Tiempo trasncurrido: %d segundos\n", tiempo);
 }
-
 
 int main()
 {
-	
-	signal(SIGALRM,signal_handler);
-	alarm(5);	
-	while(1)
-	{
-		sleep(1);
-	}
-	return 0;
+    signal(SIGALRM, manejar_alarma);
+    
+
+    while (1)
+    {
+        alarm(5);
+        pause();
+    }
+    return 0;
 }
