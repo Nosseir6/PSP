@@ -14,20 +14,24 @@ public class Consumidor extends Thread{
     public void run() {
         try {
             for (int i = 0; i < 10; i++) {
-                int numero = queue.get(opcion); // Obtiene el número según la opción.
+                int numero = queue.get(opcion); // Obtiene el número.
                 if (opcion == 1) { // Sumar.
                     if (numero % 2 == 0)
                     {
-                        resultado += numero;
-                        System.out.println("Consumidor Suma: par leído = " + numero + ", sumatorio actual de pares = " + resultado);
-                    }
 
+                        resultado += numero;
+                        System.out.println("Consumidor Pares: par leído = " + numero + ", sumatorio actual de pares = " + resultado);
+                    }
+                    else
+                        System.out.println("Numero impar el consumidor de pares no lo quiere");
                 } else if (opcion == 2) { //Impares
                     if (numero % 2 != 0)
                     {
                         resultado += numero;
-                        System.out.println("Consumidor Producto: impar leído = " + numero + ", sumatorio actual de impares = " + resultado);
+                        System.out.println("Consumidor Impar: impar leído = " + numero + ", sumatorio actual de impares = " + resultado);
                     }
+                    else
+                        System.out.println("Numero par el consumidor de impares no lo quiere");
                 }
             }
         } catch (InterruptedException e) {
