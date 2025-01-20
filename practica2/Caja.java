@@ -2,23 +2,26 @@ package practica2;
 
 import practica.Camion;
 
-public class Caja {
+public class Caja{
     private boolean ocupado;
-    private int num;
-
-    Caja(int num){
-        ocupado = false;
-        this.num = num;
+    int numCaja;
+    public Caja(int numCaja)
+    {
+        this.ocupado = false;
+        this.numCaja = numCaja;
     }
 
-    public synchronized void atenderCliente(int clienteId) throws InterruptedException {
-            ocupado = true;
-            System.out.println("Caja " + num + " atendiendo al cliente " + clienteId);
-            Thread.sleep(5000); // Simula el tiempo de atención
-            System.out.println("Caja " + num + " terminó con el cliente " + clienteId);
-
-            ocupado = false;
-            notifyAll(); // Notifica a otros clientes en espera
+    public synchronized void atenderCliente(Cliente cliente) throws InterruptedException {
+        while (isOcupado())
+        {
+            wait();
+        }
+        ocupado = true;
+        System.out.println("Caja"+numCaja+ "Atendiendo al cliente " + cliente.getNumCliente());
+        Thread.sleep(5000);
+        System.out.println("El cliente " + cliente.getNumCliente() + " ha sido atendido");
+        ocupado = false;
+        notifyAll();
 
     }
 
